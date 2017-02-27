@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.*;
 
@@ -16,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstVal, secondVal;
     private RadioGroup operationSelection;
     private Button calculateButton;
+    private final String selectButton = "Please select an operation";
+    private final String enterValue = "Please enter 2 values.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //get proper values from textFields and radioGroup
-                float first = parseFloat(firstVal.getText().toString());
-                float second = parseFloat(secondVal.getText().toString());
+                Context context = getApplicationContext();
+                String firstNum = firstVal.getText().toString();
+                String secondNum = secondVal.getText().toString();
 
-                //ensure radio button is checked
-                int selectedId = operationSelection.getCheckedRadioButtonId();
-                if (selectedId >= 0) {
+                //ensure numbers entered into EditText view
+                if (firstNum.trim().isEmpty() || secondNum.trim().isEmpty()) {
+                    Toast.makeText(context, enterValue, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    //TODO make this block easier to read
+                    float first = parseFloat(firstNum);
+                    float second = parseFloat(secondNum);
+
+                    //ensure radio button is checked
+                    int selectedId = operationSelection.getCheckedRadioButtonId();
                     switch (selectedId) {
                         //calls unnecessary methods for funzies; I am aware we could just perform operate here
                         case 0:
@@ -52,13 +61,10 @@ public class MainActivity extends AppCompatActivity {
                         case 3:
                             dividePressed(first, second);
                             break;
+                        default:
+                            Toast.makeText(context, selectButton, Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                }
-                //if no button checked, tell user to check button
-                else {
-                    Context context = getApplicationContext();
-                    String message = "Please select an operation";
-                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
