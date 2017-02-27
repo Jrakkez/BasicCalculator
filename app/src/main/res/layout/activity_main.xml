@@ -36,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/firstVal">
-        <!-- TODO remove individual button ids? make them numbers? -->
         <RadioButton
                 android:text="@string/add"
                 android:layout_width="wrap_content"

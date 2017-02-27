@@ -1,5 +1,6 @@
 package com.example.sam.basiccalculator;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,10 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 float second = parseFloat(secondVal.getText().toString());
 
                 //ensure radio button is checked
-                boolean checked = ((RadioButton) view).isChecked();
-                //if this here doesnt work as I suspect it wont, try declaring selectedID before the if and checking it
-                if (checked) {
-                    int selectedId = operationSelection.getCheckedRadioButtonId();
+                int selectedId = operationSelection.getCheckedRadioButtonId();
+                if (selectedId >= 0) {
                     switch (selectedId) {
                         //calls unnecessary methods for funzies; I am aware we could just perform operate here
                         case 0:
@@ -55,9 +54,12 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
                 }
-                //else {
-                //    Toast.makeText("Please select an operation");
-                //}
+                //if no button checked, tell user to check button
+                else {
+                    Context context = getApplicationContext();
+                    String message = "Please select an operation";
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
