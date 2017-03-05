@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BasicCalculator</string>
+    <string name="app_name">Basic Calculator</string>
     <string name="enterValue">Enter Value</string>
     <string name="add">plus</string>
     <string name="subtract">minus</string>
