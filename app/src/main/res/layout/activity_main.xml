@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:padding="10dp"
-            android:imeOptions="actionGo"
+            android:imeOptions="actionDone"
             android:background="@drawable/back"
             android:ems="10"
             android:layout_below="@+id/operationSelection"

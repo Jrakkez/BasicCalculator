@@ -3,30 +3,52 @@ package com.example.sam.basiccalculator;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.RadioGroup;
 import android.widget.*;
 
 import static java.lang.Float.parseFloat;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by Samantha Martinez around 2/26/27
+ */
 
+public class MainActivity extends AppCompatActivity {
 
     private EditText firstVal, secondVal;
     private RadioGroup operationSelection;
     private Button calculateButton;
+    private float result;
+
+    private final String yourAnswer = " is your answer.";
     private final String selectButton = "Please select an operation";
     private final String enterValue = "Please enter 2 values.";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        operationSelection = (RadioGroup) findViewById(R.id.operationSelection);
         firstVal = (EditText) findViewById(R.id.firstVal);
         secondVal = (EditText) findViewById(R.id.secondVal);
-        operationSelection = (RadioGroup) findViewById(R.id.operationSelection);
         calculateButton = (Button) findViewById(R.id.calculate);
+
+        //Make the ime done option call the calculateButton
+        secondVal.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                  calculateButton.callOnClick();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
 
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,24 +63,24 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(context, enterValue, Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    //TODO make this block easier to read
                     float first = parseFloat(firstNum);
                     float second = parseFloat(secondNum);
 
                     //ensure radio button is checked
                     int selectedId = operationSelection.getCheckedRadioButtonId();
+
+                    //calls unnecessary methods for funzies; I am aware we could just perform operations here
                     switch (selectedId) {
-                        //calls unnecessary methods for funzies; I am aware we could just perform operate here
-                        case 0:
+                        case R.id.add:
                             addPressed(first, second);
                             break;
-                        case 1:
+                        case R.id.subtract:
                             subtractPressed(first, second);
                             break;
-                        case 2:
+                        case R.id.multiply:
                             multiplyPressed(first, second);
                             break;
-                        case 3:
+                        case R.id.divide:
                             dividePressed(first, second);
                             break;
                         default:
@@ -71,40 +93,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public float addPressed(float firstVal, float secondVal) {
-
-        float result;
+    private void addPressed(float firstVal, float secondVal) {
 
         result = firstVal + secondVal;
 
-        return result;
+        makeToast(result);
     }
 
-    public float subtractPressed(float firstVal, float secondVal) {
-
-        float result;
+    private void subtractPressed(float firstVal, float secondVal) {
 
         result = firstVal - secondVal;
 
-        return result;
+        makeToast(result);
     }
 
-    public float multiplyPressed(float firstVal, float secondVal) {
-
-        float result;
+    private void multiplyPressed(float firstVal, float secondVal) {
 
         result = firstVal * secondVal;
 
-        return result;
+        makeToast(result);
     }
 
-    public float dividePressed(float firstVal, float secondVal) {
-
-        float result;
+    private void dividePressed(float firstVal, float secondVal) {
 
         result = firstVal/secondVal;
 
-        return result;
+        makeToast(result);
+    }
+
+    private void makeToast(float result) {
+
+        Context context = getApplicationContext();
+        String answer = result + yourAnswer;
+
+        Toast.makeText(context, answer, Toast.LENGTH_LONG).show();
     }
 }
 
