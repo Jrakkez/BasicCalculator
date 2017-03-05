@@ -30,38 +30,33 @@
             android:layout_marginBottom="25dp"
             android:id="@+id/firstVal" tools:text="@string/enterValue"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
-    <RadioButton
-            android:text="@string/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/firstVal"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:id="@+id/add"/>
-    <RadioButton
-            android:text="@string/subtract"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/add"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:id="@+id/subtract"/>
-    <RadioButton
-            android:text="@string/multiply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/subtract"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:id="@+id/multiply"/>
-    <RadioButton
-            android:text="@string/divide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/multiply"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:id="@+id/divide"/>
+    <RadioGroup
+        android:id="@+id/operationSelection"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstVal">
+        <RadioButton
+                android:text="@string/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add"/>
+        <RadioButton
+                android:text="@string/subtract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/subtract"/>
+        <RadioButton
+                android:text="@string/multiply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/multiply"/>
+        <RadioButton
+                android:text="@string/divide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/divide"/>
+    </RadioGroup>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,19 +65,19 @@
             android:imeOptions="actionGo"
             android:background="@drawable/back"
             android:ems="10"
-            android:layout_below="@+id/divide"
+            android:layout_below="@+id/operationSelection"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:id="@+id/secondVal" tools:text="@string/enterValue"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
     <Button
             android:text="@string/calculate"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="75dp"
             android:id="@+id/calculate"/>
 </RelativeLayout>
