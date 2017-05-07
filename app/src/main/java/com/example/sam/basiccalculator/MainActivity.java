@@ -115,13 +115,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dividePressed(float firstVal, float secondVal) {
-
-        result = firstVal/secondVal;
-
+        if(secondVal == 0.0) {
+            makeToast("Cannot divide by 0");
+        }
+        else {
+            result = firstVal / secondVal;
+        }
         makeToast(result);
     }
 
-    private void makeToast(float result) {
+    private <T> void makeToast(T result) {
 
         Context context = getApplicationContext();
         String answer = result + yourAnswer;
