@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private Button calculateButton;
     private float result;
 
-    private final String yourAnswer = " is your answer.";
-    private final String selectButton = "Please select an operation";
-    private final String enterValue = "Please enter 2 values.";
+    private final String IS_ANSWER = " is your answer.";
+    private final String PLEASE_SELECT_OPERATION = "Please select an operation";
+    private final String ENTER_TWO_VALUES = "Please enter 2 values.";
 
 
     @Override
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //ensure numbers entered into EditText view
                 if (firstNum.trim().isEmpty() || secondNum.trim().isEmpty()) {
-                    Toast.makeText(context, enterValue, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, ENTER_TWO_VALUES, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     float first = parseFloat(firstNum);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             dividePressed(first, second);
                             break;
                         default:
-                            Toast.makeText(context, selectButton, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, PLEASE_SELECT_OPERATION, Toast.LENGTH_SHORT).show();
                             break;
                     }
                 }
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     private <T> void makeToast(T result) {
 
         Context context = getApplicationContext();
-        String answer = result + yourAnswer;
+        String answer = result + IS_ANSWER;
 
         Toast.makeText(context, answer, Toast.LENGTH_LONG).show();
     }
