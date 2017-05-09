@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             result = firstVal / secondVal;
+            makeToast(result);
         }
-        makeToast(result);
     }
 
     private <T> void makeToast(T result) {
